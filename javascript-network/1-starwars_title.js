@@ -25,7 +25,7 @@ request.get(apiUrl, (error, response, body) => {
   const movie = JSON.parse(body);
 
   // Display the title of the movie
-  console.log('Title:', movie.title);
+  console.log( movie.title);
 });
 // !/usr/bin/node
 // const request = require('request');
