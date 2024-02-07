@@ -42,3 +42,8 @@ request.get(url, (error, response, body) => {
         return;
       }
       const
+    const characterData = JSON.parse(body);
+      console.log(characterData.name);
+    });
+  }
+});
