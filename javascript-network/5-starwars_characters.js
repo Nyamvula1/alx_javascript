@@ -41,7 +41,6 @@ request.get(url, (error, response, body) => {
         console.log(error);
         return;
       }
-      const
     const characterData = JSON.parse(body);
       console.log(characterData.name);
     });
