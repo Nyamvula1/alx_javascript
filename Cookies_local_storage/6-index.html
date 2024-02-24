@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart</title>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+  <ul id="item-list">
+    <!-- Item list will be populated dynamically -->
+  </ul>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const itemList = document.getElementById("item-list");
+
+      // Load items from session storage if available
+      const cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
+
+      // Display items in the cart
+      function displayItems() {
+        itemList.innerHTML = "";
+        cartItems.forEach(function(item) {
+          const li = document.createElement("li");
+          li.textContent = item;
+          itemList.appendChild(li);
+        });
+      }
+
+      displayItems();
+
+      // Add click event listener to each item
+      itemList.addEventListener("click", function(event) {
+        const selectedItem = event.target.textContent;
+        if (!cartItems.includes(selectedItem)) {
+          cartItems.push(selectedItem);
+          sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+          displayItems();
+        }
+      });
+
+      // Display message if items are already in the cart
+      window.addEventListener("load", function() {
+        const itemCount = cartItems.length;
+        if (itemCount > 0) {
+          alert(`You previously had ${itemCount} items in your cart.`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

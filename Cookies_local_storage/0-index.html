@@ -6,21 +6,23 @@
     <title>Login to the website</title>
 </head>
     <body>
-        <div class = "setcookie">
-            <h2>Login to the Website</h2>
-        
-            <label for="firstname">First name:</label><br>
-            <input type="text" id="firstname" name="firstname"><br>
-            <label for="email">email:</label><br>
-            <input type="text" id="email" name="email">
-            <button onclick="setCookies()">Log me in</button>
+        <main>
+            <div class = "setcookie">
+                <h2>Login to the Website</h2>
             
-          
-          <div class="show cookies">
-            <h2>cookies</h2>
-            <button onclick="showCookies()">Show the cookies</button>
-          </div>  
-        </div>
+                <label for="firstname">First name:</label><br>
+                <input type="text" id="firstname" name="firstname"><br>
+                <label for="email">email:</label><br>
+                <input type="text" id="email" name="email">
+                <button onclick="setCookies()">Log me in</button>
+                
+            
+            <div class="show cookies">
+                <h2>cookies</h2>
+                <button onclick="showCookies()">Show the cookies</button>
+            </div>  
+            </div>
+        </main>
         <script>
             function setCookie(cname, cvalue, exdays) {
                 const d = new Date();

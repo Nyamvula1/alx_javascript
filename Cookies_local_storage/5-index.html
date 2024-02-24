@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Application</title>
+</head>
+<body>
+    <script>
+        var availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+        // Check if local storage is supported
+        function isLocalStorageSupported() {
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+        
+        // Function to display alert if local storage is not supported
+        function displayAlert() {
+            alert("Sorry, your browser does not support Web storage. Try again with a better one.");
+        }
+        
+        // Function to add item to cart
+        function addItemToCart(item) {
+            var cartItems = JSON.parse(localStorage.getItem("cartItems")) || {};
+            cartItems[item] = true;
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        }
+        
+        // Function to create store
+        function createStore() {
+            var ul = document.createElement("ul");
+            for (var i = 0; i < availableItems.length; i++) {
+                var li = document.createElement("li");
+                li.textContent = availableItems[i];
+                li.addEventListener("click", function() {
+                    addItemToCart(this.textContent);
+                });
+                ul.appendChild(li);
+            }
+            document.body.appendChild(ul);
+        }
+        
+        // Function to display cart
+        function displayCart() {
+            var cartItems = JSON.parse(localStorage.getItem("cartItems"));
+            if (cartItems && Object.keys(cartItems).length > 0) {
+                var p = document.createElement("p");
+                p.textContent = "You previously had " + Object.keys(cartItems).length + " item(s) in your cart.";
+                document.body.appendChild(p);
+            }
+        }
+        
+        // Check if local storage is supported
+        if (isLocalStorageSupported()) {
+            // If supported, call the functions to create store and display cart
+            createStore();
+            displayCart();
+        } else {
+            // If not supported, display an alert
+            displayAlert();
+        }
+    </script>
+</body>
+</html>
